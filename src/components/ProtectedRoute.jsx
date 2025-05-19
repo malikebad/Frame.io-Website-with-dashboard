@@ -6,7 +6,8 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="flex items-center justify-center h-screen bg-background text-white">Loading...</div>;
+    // Don't return null/redirect, show a loading indicator
+    return <div>Loading...</div>;
   }
 
   if (!user || (allowedRoles && !allowedRoles.includes(user.role))) {
@@ -15,5 +16,3 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   return children;
 };
-
-export default ProtectedRoute;
