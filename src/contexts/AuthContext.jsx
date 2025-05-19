@@ -13,12 +13,12 @@ export const AuthProvider = ({ children }) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('frameio-user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
-  }, []);
+  const storedUser = localStorage.getItem('frameio-user');
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+  setLoading(false);
+}, []);
 
   const login = (email, password) => {
     const users = JSON.parse(localStorage.getItem('frameio-users')) || [];
