@@ -64,6 +64,12 @@ function App() {
             </ProtectedRoute>
           } /> */}
 
+          <Route path="/client/chat" element={
+           <ProtectedRoute allowedRoles={['client']}>
+             <ChatSupportPage />
+           </ProtectedRoute>
+          } />
+
           <Route path="upload" element={<UploadPage />} />
           <Route path="downloads" element={<DownloadsPage />} />
           <Route path="settings" element={<SettingsPage />} />
