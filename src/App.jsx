@@ -21,6 +21,8 @@ import ChatSupportPage from '@/pages/dashboard/ChatSupportPage';
 import UploadPage from '@/pages/dashboard/UploadPage';
 import DownloadsPage from '@/pages/dashboard/DownloadsPage';
 import SettingsPage from '@/pages/dashboard/SettingsPage';
+// Optional: Import your monitoring/admin-only pages if they exist
+// import MonitoringPage from '@/pages/dashboard/MonitoringPage';
 
 function App() {
   return (
@@ -47,7 +49,21 @@ function App() {
           <Route path="videos" element={<VideosPage />} />
           <Route path="calendar" element={<CalendarPage />} />
           <Route path="invitations" element={<InvitationsPage />} />
-          <Route path="chat" element={<ChatSupportPage />} />
+
+          {/* Restrict chat to superadmin and subadmin */}
+          <Route path="chat" element={
+            <ProtectedRoute allowedRoles={['superadmin', 'subadmin']}>
+              <ChatSupportPage />
+            </ProtectedRoute>
+          } />
+
+          {/* Example: restrict monitoring to superadmin only */}
+          {/* <Route path="monitoring" element={
+            <ProtectedRoute allowedRoles={['superadmin']}>
+              <MonitoringPage />
+            </ProtectedRoute>
+          } /> */}
+
           <Route path="upload" element={<UploadPage />} />
           <Route path="downloads" element={<DownloadsPage />} />
           <Route path="settings" element={<SettingsPage />} />
