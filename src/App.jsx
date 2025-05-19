@@ -37,6 +37,14 @@ function App() {
           <Route path="signin" element={<SignInPage />} />
           <Route path="signup" element={<SignUpPage />} />
         </Route>
+
+        {/* This is the CORRECT location for /client/chat */}
+        <Route path="/client/chat" element={
+          <ProtectedRoute allowedRoles={['client']}>
+            <ChatSupportPage />
+          </ProtectedRoute>
+        } />
+
         <Route 
           path="/dashboard" 
           element={
@@ -63,12 +71,6 @@ function App() {
               <MonitoringPage />
             </ProtectedRoute>
           } /> */}
-
-          <Route path="/client/chat" element={
-           <ProtectedRoute allowedRoles={['client']}>
-             <ChatSupportPage />
-           </ProtectedRoute>
-          } />
 
           <Route path="upload" element={<UploadPage />} />
           <Route path="downloads" element={<DownloadsPage />} />
